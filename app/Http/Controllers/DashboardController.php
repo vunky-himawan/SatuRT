@@ -9,7 +9,6 @@ use App\Models\Keuangan;
 use App\Models\Pelaporan;
 use App\Models\Penduduk;
 use App\Models\Persuratan;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -115,7 +114,6 @@ class DashboardController extends Controller
         try {
             return Pelaporan::join('pengajuan', 'pelaporan.pengajuan_id', '=', 'pengajuan.pengajuan_id')
                 ->with(['pengajuan', 'pengajuan.penduduk'])
-                ->whereDate('pengajuan.updated_at', Carbon::today())
                 ->orderBy('pengajuan.updated_at', 'desc')
                 ->where('pengajuan.status_id', 1)
                 ->get();

@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kriteria;
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class CriteriaController extends Controller
 {
@@ -33,7 +31,7 @@ class CriteriaController extends Controller
     {
         $kriteria = Kriteria::all();
         $breadcrumb = [
-            'list' => ['Home', 'SPK', 'Kriteria'],
+            'list' => ['Home', 'Prioritas Kegiatan', 'Kriteria'],
             'url' => ['home', 'spk.kriteria.index', 'spk.kriteria.index'],
         ];
         return response()->view('pages.kriteria.index', [

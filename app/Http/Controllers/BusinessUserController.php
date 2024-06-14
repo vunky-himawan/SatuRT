@@ -13,7 +13,6 @@ use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -95,13 +94,13 @@ class BusinessUserController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_umkm' => 'required|string|max:255',
             'jenis_umkm' => 'required|in:Makanan dan Minuman,Pakaian,Peralatan,Jasa,Lainnya',
-            'keterangan' => 'required|string|max:255',
+            'keterangan' => 'required',
             'alamat' => 'required|string|max:255',
             'nomor_telepon' => 'required|string|max:255',
             'lokasi_url' => 'required|string|max:255',
-            'thumbnail_url' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'thumbnail_url' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'status' => 'required|in:Aktif,Nonaktif',
-            'lisence_image_url' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'lisence_image_url' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'nik' => ['required', 'exists:penduduk,nik']
         ]);
 
@@ -124,7 +123,6 @@ class BusinessUserController extends Controller
 
         try {
             $umkm['nama_umkm'] = Str::title($request['nama_umkm']);
-            $umkm['keterangan'] = Str::title($request['keterangan']);
             $umkm['alamat'] = Str::title($request['alamat']);
             $umkm['nama_umkm'] = Str::title($request['nama_umkm']);
 
@@ -220,13 +218,13 @@ class BusinessUserController extends Controller
         $validator = Validator::make($request->all(), [
             'nama_umkm' => 'required|string|max:255',
             'jenis_umkm' => 'required|in:Makanan dan Minuman,Pakaian,Peralatan,Jasa,Lainnya',
-            'keterangan' => 'required|string|max:255',
+            'keterangan' => 'required|string',
             'alamat' => 'required|string|max:255',
             'nomor_telepon' => 'required|string|max:255',
             'lokasi_url' => 'required|string|max:255',
-            'thumbnail_url' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'thumbnail_url' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'status' => 'required|in:Aktif,Nonaktif',
-            'lisence_image_url' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'lisence_image_url' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048',
             'nik' => ['required', 'exists:penduduk,nik']
         ]);
 
@@ -251,7 +249,6 @@ class BusinessUserController extends Controller
         try {
 
             $umkmUpdate['nama_umkm'] = Str::title($request['nama_umkm']);
-            $umkmUpdate['keterangan'] = Str::title($request['keterangan']);
             $umkmUpdate['alamat'] = Str::title($request['alamat']);
             $umkmUpdate['nama_umkm'] = Str::title($request['nama_umkm']);
             DB::beginTransaction();

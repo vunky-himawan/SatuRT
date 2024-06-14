@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Pengajuan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,14 +17,13 @@ class PelaporanFactory extends Factory
     public function definition(): array
     {
         return [
-            'pengajuan_id' => Pengajuan::pluck('pengajuan_id')->random(),
-            'jenis_pelaporan' => $this->faker->randomElement([
-                'Pengaduan',
-                'Kritik',
-                'Saran',
-                'Lainnya'
-            ]),
-            'image_url' => $this->faker->imageUrl(),
+            // 'pengajuan_id' => Pengajuan::pluck('pengajuan_id')->unique()->random(),
+            // 'jenis_pelaporan' => $this->faker->randomElement([
+            //     'Pengaduan',
+            //     'Kritik',
+            //     'Saran',
+            //     'Lainnya'
+            // ]),
         ];
     }
 }

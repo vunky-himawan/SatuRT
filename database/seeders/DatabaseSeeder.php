@@ -4,7 +4,6 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\KartuKeluarga;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,9 +20,9 @@ class DatabaseSeeder extends Seeder
             KeuanganSeeder::class,
             DetailKeuanganSeeder::class,
             StatusSeeder::class,
-            PengajuanSeeder::class,
-            PelaporanSeeder::class,
-            PersuratanSeeder::class,
+            // PengajuanSeeder::class,
+            // PelaporanSeeder::class,
+            // PersuratanSeeder::class,
             UMKMSeeder::class,
             InformasiSeeder::class,
             KriteriaAlternatifSeeder::class,

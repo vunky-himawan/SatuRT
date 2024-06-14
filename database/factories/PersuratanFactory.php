@@ -2,8 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Penduduk;
-use App\Models\Pengajuan;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,17 +17,17 @@ class PersuratanFactory extends Factory
     public function definition(): array
     {
         return [
-            'pengajuan_id' => Pengajuan::pluck('pengajuan_id')->random(),
-            'jenis_surat' => $this->faker->randomElement([
-                'Surat Pengantar KTP',
-                'Surat Pengantar Kartu keluarga',
-                'Surat Pengantar Akta Kelahiran',
-                'Surat Pengantar Akta Kematian',
-                'Surat Pengantar SKCK',
-                'Surat Pengantar Nikah',
-                'Lainnya',
-            ]),
-            'pemohon' => Penduduk::pluck('penduduk_id')->random(),
+            // 'pengajuan_id' => Pengajuan::pluck('pengajuan_id')->unique()->random(),
+            // 'jenis_surat' => $this->faker->randomElement([
+            //     'Surat Pengantar KTP',
+            //     'Surat Pengantar Kartu keluarga',
+            //     'Surat Pengantar Akta Kelahiran',
+            //     'Surat Pengantar Akta Kematian',
+            //     'Surat Pengantar SKCK',
+            //     'Surat Pengantar Nikah',
+            //     'Lainnya',
+            // ]),
+            // 'pemohon' => Penduduk::pluck('penduduk_id')->random(),
         ];
     }
 }

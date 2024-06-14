@@ -35,7 +35,16 @@ class ProfileController extends Controller
 
         return response()->view('pages.profile.complete-data', [
             'penduduk' => $penduduk,
-            'extension' => 'jpg,jpeg,png',
+            'extension' => 'jpg,jpeg,png,webp',
+            'form' => [
+                'pendidikanTerakhir' => Penduduk::getListPendidikanTerakhir(),
+                'statusPerkawinan' => Penduduk::getListStatusPerkawinan(),
+                'statusHubunganDalamKeluarga' => Penduduk::getListStatusHubunganDalamKeluarga(),
+                'jenisKelamin' => Penduduk::getListJenisKelamin(),
+                'agama' => Penduduk::getListAgama(),
+                'golonganDarah' => Penduduk::getListGolonganDarah(),
+                'statusPenduduk' => Penduduk::getListStatusPenduduk(),
+            ]
         ]);
     }
 
@@ -52,12 +61,13 @@ class ProfileController extends Controller
         $penduduk = Penduduk::find($id);
         return response()->view('pages.profile.account-edit', [
             'penduduk' => $penduduk,
-            'extension' => 'jpg,jpeg,png',
+            'extension' => 'jpg,jpeg,png,webp',
         ]);
     }
 
     public function completeData(Request $request, string $id): RedirectResponse
     {
+        // dd($request->all());
         $validated = $request->validate([
             'agama' => 'required',
             'desa' => 'required',
@@ -66,7 +76,7 @@ class ProfileController extends Controller
             'jenis_kelamin' => 'required',
             'kecamatan' => 'required',
             'kota' => 'required',
-            'nama' => 'required',
+            'nama' => 'required|unique',
             'nomor_rt' => 'required',
             'nomor_rw' => 'required',
             'pekerjaan' => 'required',
@@ -85,6 +95,7 @@ class ProfileController extends Controller
             'kecamatan.required' => 'Kecamatan harus diisi',
             'kota.required' => 'Kota harus diisi',
             'nama.required' => 'Nama harus diisi',
+            'nama.unique' => 'Nama sudah terdaftar',
             'nomor_rt.required' => 'Nomor RT harus diisi',
             'nomor_rw.required' => 'Nomor RW harus diisi',
             'pekerjaan.required' => 'Pekerjaan harus diisi',
@@ -164,13 +175,12 @@ class ProfileController extends Controller
         $validated = $request->validate([
             'username' => 'required',
             'email' => 'required|email',
-            'profile' => 'required|image',
+            'profile' => 'image',
         ], [
             'username.required' => 'Username harus diisi',
             'email.required' => 'Email harus diisi',
             'email.email' => 'Email tidak valid',
-            'profile.required' => 'Foto Profil harus diisi',
-            'profile.image' => 'Foto Profil harus berupa gambar',
+            'profile.image' => 'Foto Profile harus berupa gambar',
         ]);
 
         if ($request->profile) {

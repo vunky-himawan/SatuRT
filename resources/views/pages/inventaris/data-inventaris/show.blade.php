@@ -23,27 +23,31 @@
                             <h5 class="font-semibold max-lg:w-2/5">Nama</h5>
                             <p class="md:col-span-3">: {{ $inventaris->nama_inventaris }}</p>
                         </div>
-                    </div>
-
-                    <div class="lg:mt-5 gap-5 flex max-lg:flex-col lg:grid lg:grid-cols-2">
                         <div class="md:grid md:grid-cols-4 flex max-lg:flex-auto gap-3">
                             <h5 class="font-semibold max-lg:w-2/5">Merk</h5>
                             <p class="md:col-span-3">: {{ $inventaris->merk }}</p>
                         </div>
+                    </div>
+
+                    <div class="lg:mt-5 gap-5 flex max-lg:flex-col lg:grid lg:grid-cols-2">
                         <div class="md:grid md:grid-cols-4 flex max-lg:flex-auto gap-3">
                             <h5 class="font-semibold max-lg:w-2/5">Warna</h5>
                             <p class="md:col-span-3">: {{ $inventaris->warna }}</p>
+                        </div>
+                        <div class="md:grid md:grid-cols-4 flex max-lg:flex-auto gap-3">
+                            <h5 class="font-semibold max-lg:w-2/5">Jumlah</h5>
+                            <p class="md:col-span-3">: {{ $inventaris->jumlah }}</p>
                         </div>
                     </div>
 
                     <div class="lg:mt-5 gap-5 flex max-lg:flex-col lg:grid lg:grid-cols-2">
                         <div class="md:grid md:grid-cols-4 flex max-lg:flex-auto gap-3">
-                            <h5 class="font-semibold max-lg:w-2/5">Jumlah</h5>
-                            <p class="md:col-span-3">: {{ $inventaris->jumlah }}</p>
-                        </div>
-                        <div class="md:grid md:grid-cols-4 flex max-lg:flex-auto gap-3">
                             <h5 class="font-semibold max-lg:w-2/5">Jenis</h5>
                             <p class="md:col-span-3">: {{ $inventaris->jenis }}</p>
+                        </div>
+                        <div class="md:grid md:grid-cols-4 flex max-lg:flex-auto gap-3">
+                            <h5 class="font-semibold max-lg:w-2/5">Sumber</h5>
+                            <p class="md:col-span-3">: {{ $inventaris->sumber }}</p>
                         </div>
                     </div>
 
@@ -57,24 +61,47 @@
                         <div class="max-lg:mt-5 lg:col-span-2">
                             <h5 class="font-semibold">Lampiran</h5>
 
-                            <div x-data="{ openImage: false }">
-                                <img @click="openImage = !openImage"
-                                src="{{ route('public', $inventaris->foto_inventaris) }}"
-                                alt="" class="border-2 mt-3 rounded-xl h-auto max-h-[17rem] w-full object-cover"
-                                draggable="false">
-                                <div x-show="openImage"
-                                class="fixed z-[999999999] top-0 left-0 py-10 lg:px-32 px-10 w-full min-w-screen min-h-screen lg:w-screen lg:h-screen bg-navy-night/70 flex justify-center items-center">
-                                    <img @click="openImage = false" x-show="openImage"
-                                        @click.outside="openImage = false"
-                                        src="{{ route('public', $inventaris->foto_inventaris) }}"
-                                        alt="" class="rounded-xl w-max h-max lg:max-w-full lg:max-h-full"
+                            @if ($inventaris->foto_inventaris)
+                                <div x-data="{ openImage: false }">
+                                    <img @click="openImage = !openImage"
+                                        src="{{ route('public', $inventaris->foto_inventaris) }}" alt=""
+                                        class="border-2 mt-3 rounded-xl h-auto max-h-[17rem] w-full object-cover"
                                         draggable="false">
-                                    <div class="absolute w-8 h-8 top-10 right-10 cursor-pointer"
-                                        @click="openImage = false">
-                                        <x-heroicon-o-x-mark class="w-8 h-8" class="text-white-snow absolute" />
+                                    <div x-show="openImage"
+                                        class="fixed z-[999999999] top-0 left-0 py-10 lg:px-32 px-10 w-full min-w-screen min-h-screen lg:w-screen lg:h-screen bg-navy-night/70 flex justify-center items-center">
+                                        <img @click="openImage = false" x-show="openImage"
+                                            @click.outside="openImage = false"
+                                            src="{{ route('public', $inventaris->foto_inventaris) }}" alt=""
+                                            class="rounded-xl w-max h-max lg:max-w-full lg:max-h-full"
+                                            draggable="false">
+                                        <div class="absolute w-8 h-8 top-10 right-10 cursor-pointer"
+                                            @click="openImage = false">
+                                            <x-heroicon-o-x-mark class="w-8 h-8" class="text-white-snow absolute" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @else
+                                <div x-data="{ openImage: false }">
+                                    <img @click="openImage = !openImage"
+                                        src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg"
+                                        alt="Default Image"
+                                        class="mt-3 rounded-xl h-auto max-h-[17rem] w-full object-cover border-2"
+                                        draggable="false">
+                                    <div x-show="openImage"
+                                        class="fixed z-[999999999] top-0 left-0 py-10 lg:px-32 px-10 min-w-screen min-h-screen lg:w-screen lg:h-screen bg-navy-night/70 flex justify-center items-center">
+                                        <img @click="openImage = false" x-show="openImage"
+                                            @click.outside="openImage = false"
+                                            src="https://img.freepik.com/free-vector/illustration-gallery-icon_53876-27002.jpg"
+                                            alt="Default Image"
+                                            class="rounded-xl w-max h-max lg:max-w-full lg:max-h-full"
+                                            draggable="false">
+                                        <div class="absolute w-8 h-8 top-10 right-10 cursor-pointer"
+                                            @click="openImage = false">
+                                            <x-heroicon-o-x-mark class="w-8 h-8" class="text-white-snow absolute" />
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
                     </div>
 

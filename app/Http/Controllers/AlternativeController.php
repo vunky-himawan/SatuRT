@@ -14,7 +14,6 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-use PHPUnit\Event\Code\Throwable;
 
 class AlternativeController extends Controller
 {
@@ -42,7 +41,7 @@ class AlternativeController extends Controller
     {
         try {
             $breadcrumb = [
-                'list' => ['Home', 'SPK', 'Kegiatan'],
+                'list' => ['Home', 'Prioritas Kegiatan', 'Kegiatan'],
                 'url' => ['home', 'spk.index', 'spk.index'],
             ];
 
@@ -65,7 +64,7 @@ class AlternativeController extends Controller
             }
 
             $breadcrumb = [
-                'list' => ['Home', 'SPK', 'Tambah Kegiatan'],
+                'list' => ['Home', 'Prioritas Kegiatan', 'Tambah Kegiatan'],
                 'url' => ['home', 'spk.index', 'spk.create'],
             ];
 
@@ -138,7 +137,7 @@ class AlternativeController extends Controller
             }
 
             $breadcrumb = [
-                'list' => ['Home', 'SPK', 'Edit Data Kegiatan'],
+                'list' => ['Home', 'Prioritas Kegiatan', 'Edit Data Kegiatan'],
                 'url' => ['home', 'spk.index', ['spk.edit', $id]],
             ];
 
@@ -215,7 +214,7 @@ class AlternativeController extends Controller
             }
 
             $breadcrumb = [
-                'list' => ['Home', 'SPK', 'Detail Kegiatan'],
+                'list' => ['Home', 'Prioritas Kegiatan', 'Detail Kegiatan'],
                 'url' => ['home', 'spk.index', ['spk.show', $id]],
             ];
 
